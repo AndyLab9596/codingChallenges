@@ -4,7 +4,7 @@
  */
 
 const maxSubarraySum = (arrayNumbers, number) => {
-    if (arrayNumbers.length === 0 || !arrayNumbers || !Array.isArray(arrayNumbers)) return null;
+    if (arrayNumbers.length === 0 || !arrayNumbers || !Array.isArray(arrayNumbers) || arrayNumbers.length < number) return null;
 
     let tempSum = 0;
     
