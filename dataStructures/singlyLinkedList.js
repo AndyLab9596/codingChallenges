@@ -46,6 +46,90 @@ class SinglyLinkedList {
         }
         return current;
     }
+
+    shift () {
+        if (!this.head) return undefined;
+
+        let currentHead = this.head;
+        this.head = currentHead.next;
+        this.length--;
+
+        if (this.length === 0) {
+            this.tail = null;
+        }
+
+        return currentHead;
+    }
+
+    unshift (val) {
+        let newHead = new Node(val)
+        if (!this.head) {
+            this.head = newHead;
+            this.tail = this.head;
+        } else {
+            newHead.next = this.head;
+            this.head = newHead;
+        }
+        this.length++;
+        return this;
+    }
+
+    get(index) {
+        if (index < 0 || index > this.length) return undefined;
+
+        let counter = 0;
+        let currentNode = this.head;
+        while (counter !== index) {
+            currentNode = currentNode.next;
+            counter++;
+        }
+
+        return currentNode;
+    }
+
+    insert(index, val) {
+        if (index === 0) this.unshift(val);
+        else if (index === this.length - 1) this.push(val);
+
+        let insertedNode = new Node(val);
+        let beforeInsertedNode = this.get(index - 1);
+        let previousNode = beforeInsertedNode.next;
+        beforeInsertedNode.next = insertedNode;
+        insertedNode.next = previousNode;
+        this.length++;
+
+        return true;
+    }
+
+    reverse () {
+        let node = this.head;
+        this.head = this.tail;
+        this.tail = node;
+
+        let next;
+        let prev = null;
+
+        for (let i = 0; i < this.length; i++) {
+            next = node.next;
+            node.next = prev;
+            prev = node;
+            node = next;
+        }
+
+        return this;
+    }
+
+    print() {
+        let arr = [];
+        let current = this.head;
+        while (current) {
+            arr.push(current.val);
+            current = current.next
+        }
+
+        console.log(arr);
+    }
+
 }
 
 const singlyLinkedList = new SinglyLinkedList();
@@ -59,6 +143,11 @@ singlyLinkedList.push(76);
 singlyLinkedList.push(89);
 singlyLinkedList.push(90);
 
-singlyLinkedList.pop();
+// singlyLinkedList.shift();
+// singlyLinkedList.pop();
 
+// console.log(singlyLinkedList.get(2));
+
+singlyLinkedList.insert(2, 33);
+singlyLinkedList.print();
 console.log(singlyLinkedList);
