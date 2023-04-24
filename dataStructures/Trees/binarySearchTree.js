@@ -60,13 +60,12 @@ class BinarySearchTree {
 }
 
 const testBST = new BinarySearchTree();
-testBST.insert(56);
-testBST.insert(41);
-testBST.insert(27);
-testBST.insert(27);
-testBST.insert(69);
-testBST.insert(61);
-testBST.insert(80);
+testBST.insert(10);
+testBST.insert(6);
+testBST.insert(3);
+testBST.insert(8);
+testBST.insert(15);
+testBST.insert(20);
 
 
 console.log(testBST);
